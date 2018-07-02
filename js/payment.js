@@ -28,7 +28,10 @@ neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
 
 $(getUserAddress);
 
-$("#submit_1").click(function () {
+$("#submit_1").click(Submit);
+$("#submit_2").click(Submit);
+
+function Submit () {
     var to = dappAddress;
     var value = "0.0001";    //NAS
     var callFunction = "newOrder";
@@ -48,7 +51,7 @@ $("#submit_1").click(function () {
         funcIntervalQuery();
     }, 11000);
 
-})
+}
 
 function funcIntervalQuery() {
     var options = {
@@ -94,7 +97,7 @@ function getUserAddress() {
 window.addEventListener('message', function(e) {
     // e.detail contains the transferred data (can
     console.log("recived by page:" + e + ", e.data:" + JSON.stringify(e.data));
-    if (!!e.data.data.account) {
+    if (!!e.data.data && !!e.data.data.account) {
         userAddrerss = e.data.data.account;
         getOrderHistory();
     }
