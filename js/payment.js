@@ -36,10 +36,10 @@ function Submit () {
     var value = "0.0001";    //NAS
     var callFunction = "newOrder";
     var callArgsObj = {
-        name : $("#name").val(),
-        phone : $("#phone").val(),
-        email : $("#email").val(),
-        msg: $("msg").val(),
+        name : $("#resource_name").val(),
+        phone : $("#resource_link").val(),
+        email : $("#resource_order").val(),
+        msg: $("#resource_knot").val()
     }
     var callArgs = JSON.stringify([JSON.stringify(callArgsObj)]);
     serialNumber = nebPay.call(to, value, callFunction, callArgs, {
@@ -96,7 +96,7 @@ function getUserAddress() {
 // listen message from contentscript
 window.addEventListener('message', function(e) {
     // e.detail contains the transferred data (can
-    console.log("recived by page:" + e + ", e.data:" + JSON.stringify(e.data));
+    //console.log("recived by page:" + e + ", e.data:" + JSON.stringify(e.data));
     if (!!e.data.data && !!e.data.data.account) {
         userAddrerss = e.data.data.account;
         getOrderHistory();
